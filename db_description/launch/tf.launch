@@ -1,0 +1,18 @@
+<?xml version="1.0"?>
+<launch>
+    <arg name="model" default="$(find db_description)/urdf/duckiebot.xacro"/>
+    <arg name="js_gui" default="false"/>
+
+    <!-- Cargar el URDF como parametro -->
+    <param name="robot_description" command="$(find xacro)/xacro $(arg model)"/>
+
+    <!-- Nodos para publicar joints y links -->
+    <node name="robot_state_publisher" pkg="robot_state_publisher" type="robot_state_publisher"/>
+
+    <group if="$(arg js_gui)">
+        <node name="joint_state_publisher_gui" pkg="joint_state_publisher_gui" type="joint_state_publisher_gui"/>
+    </group>
+    <group unless="$(arg js_gui)">
+        <node name="joint_state_publisher" pkg="joint_state_publisher" type="joint_state_publisher"/>
+    </group>
+</launch>
