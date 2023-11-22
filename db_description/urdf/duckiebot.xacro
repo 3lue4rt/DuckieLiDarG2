@@ -4,13 +4,13 @@
 
   <xacro:property name="wheel_diameter"  value="0.034"/>
   <xacro:property name="wheel_thickness" value="0.025"/>
-  <xacro:property name="wheel_offset_z"  value="0.01"/>
+  <xacro:property name="wheel_offset_z"  value="0.034"/>
   <xacro:property name="wheel_ori_x"     value="0.055"/>
 
 
   <xacro:property name="chassis_ori_z"  value="0.0605"/>
   <xacro:property name="chassis_size_x" value="0.175"/>
-  <xacro:property name="chassis_size_y" value="0.081"/>
+  <xacro:property name="chassis_size_y" value="0.11"/>
   <xacro:property name="chassis_size_z" value="0.027"/>
 
   <xacro:property name="laser_ori_x"  value="0.0275"/>
@@ -18,13 +18,13 @@
   <xacro:property name="imu_ori_x"  value="-0.095"/>
 
   <!-- Base link -->
-  <link name="base_link"/>
+  <link name="base_link"/>.
 
   <!-- Chassis -->
   <xacro:macro name="chassis">  
   <link name="chassis">
     <visual>
-      <origin xyz="0 0 ${chassis_ori_z}" rpy="0 0 0"/>
+      <origin xyz="0 0 ${chassis_ori_z} " rpy="0 0 0"/>
       <geometry>
         <box size="${chassis_size_x} ${chassis_size_y} ${chassis_size_z}"/>
       </geometry>
@@ -71,11 +71,11 @@
       </visual>
     </link>
 
-    <joint name="imu_joint" type="fixed">
-      <parent link="chassis"/>
-      <child link="imu"/>
-      <origin xyz="${imu_ori_x} -0.006 0.0015" rpy="0 0 0"/>
-    </joint>
+  <joint name="imu_joint" type="fixed">
+    <parent link="chassis"/>
+    <child link="imu"/>
+    <origin xyz="${imu_ori_x} -0.006 0.059" rpy="0 0 0"/>
+  </joint>
   </xacro:macro>
   <xacro:imu/>
 
@@ -110,14 +110,14 @@
   <joint name="left_wheel_joint" type="continuous">
     <parent link="chassis"/>
     <child link="left_wheel"/>
-    <origin xyz="0.05 -0.0625 0.015" rpy="${-pi/2} 0 0"/>
+    <origin xyz="0.05 -0.0625 0.017" rpy="${-pi/2} 0 0"/>
     <axis xyz="0 0 1"/>
   </joint>
 
   <joint name="right_wheel_joint" type="continuous">
     <parent link="chassis"/>
     <child link="right_wheel"/>
-    <origin xyz="0.05 0.0625 0.015" rpy="${pi/2} 0 0"/>
+    <origin xyz="0.05 0.0625 0.017" rpy="${pi/2} 0 0"/>
     <axis xyz="0 0 1"/>
   </joint>
 
