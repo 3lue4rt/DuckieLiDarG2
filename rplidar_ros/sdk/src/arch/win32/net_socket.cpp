@@ -767,15 +767,12 @@ public:
                 return RESULT_OPERATION_FAIL;
         }
     }
-/*
+
     virtual u_result sendTo(const SocketAddress & target, const void * buffer, size_t len)
     {
         const struct sockaddr * addr = reinterpret_cast<const struct sockaddr *>(target.getPlatformData());
-		//const struct sockaddr* addr = &target ? reinterpret_cast<const struct sockaddr*>(target.getPlatformData()) : NULL;
-		//int dest_addr_size = (&target ? sizeof(sockaddr_storage) : 0);
         assert(addr);
         int ans = ::sendto( _socket_fd, (const char *)buffer, (int)len, 0, addr, (int)sizeof(sockaddr_storage));
-		//int ans = ::sendto(_socket_fd, (const char*)buffer, (int)len, 0, addr, dest_addr_size);
         if (ans != SOCKET_ERROR) {
             assert(ans == (int)len);
             return RESULT_OK;
@@ -789,58 +786,6 @@ public:
                 return RESULT_OPERATION_FAIL;
             }
         }
-
-    }
-*/
-    virtual u_result clearRxCache()
-    {
-        timeval tv;
-        tv.tv_sec = 0;
-        tv.tv_usec = 0;
-        fd_set rdset;
-        FD_ZERO(&rdset);
-        FD_SET(_socket_fd, &rdset);
-
-        int res = -1;
-        char recv_data[2];
-        memset(recv_data, 0, sizeof(recv_data));
-        while (true) {
-            res = select(FD_SETSIZE, &rdset, nullptr, nullptr, &tv);
-            if (res == 0) break;
-            recv(_socket_fd, recv_data, 1, 0);
-        }
-        return RESULT_OK;
-    }
-
-	virtual u_result sendTo(const SocketAddress & target, const void * buffer, size_t len)
-    {
-        const struct sockaddr* addr = &target ? reinterpret_cast<const struct sockaddr*>(target.getPlatformData()) : NULL;
-        int dest_addr_size = (&target ? sizeof(sockaddr_storage) : 0);
-        int ans = ::sendto(_socket_fd, (const char*)buffer, (int)len, 0, addr, dest_addr_size);
-        if (ans != SOCKET_ERROR) {
-            assert(ans == (int)len);
-            return RESULT_OK;
-        } else {
-           switch(WSAGetLastError()) {
-            case WSAETIMEDOUT:
-                return RESULT_OPERATION_TIMEOUT;
-            case WSAEMSGSIZE:
-                return RESULT_INVALID_DATA;
-            default:
-                return RESULT_OPERATION_FAIL;
-            }
-        }
-
-    }
-	
-	virtual u_result setPairAddress(const SocketAddress *pairAddress)
-    {
-		sockaddr_storage unspecAddr;
-        unspecAddr.ss_family = AF_UNSPEC;
-
-        const struct sockaddr* addr = pairAddress ? reinterpret_cast<const struct sockaddr*>(pairAddress->getPlatformData()) : reinterpret_cast<const struct sockaddr*>(&unspecAddr);
-        int ans = ::connect(_socket_fd, addr, (int)sizeof(sockaddr_storage));
-        return ans ? RESULT_OPERATION_FAIL : RESULT_OK;
 
     }
 

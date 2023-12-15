@@ -21,17 +21,20 @@ class Template(object):
 	self.time = time()
 	self.buttons = [0,0,0,0]
 	self.tiempoactual = 0
+        self.odomx = 0
     def callback(self,msg):
         self.buttons[0] = msg.buttons[2]
         self.buttons[1] = msg.buttons[0]
         self.buttons[2] = msg.buttons[1]
 	self.buttons[3] = msg.buttons[3]
-
+	self.RB = msg.buttons[12]
+        self.LB = msg.buttons[11]
        # print(self.buttons[0], self.buttons[1], self.buttons[2], self.buttons[3])
        # self.twist.omega = 0
 	#if z!=1 and p!=1:
-        self.twist.vel_right = self.buttons[1]-0.05-self.buttons[0]
-        self.twist.vel_left = self.buttons[1] - self.buttons[0]
+	maxspeed=1
+        self.twist.vel_right = maxspeed*(self.buttons[1]-0.05-self.buttons[0]+(self.RB-self.LB))
+        self.twist.vel_left = maxspeed*(self.buttons[1] - self.buttons[0]+(-self.RB+self.LB))
 	###if x!=1 and p!=1:
 	#	self.twist.vel_right = z*0.7 - 0.05
 	#	self.twist.vel_left = z*0.7
@@ -49,26 +52,28 @@ class Template(object):
 		t0=time() - time_current
 		t=self.tiempoactual + t0
 		#print(t)
-		msg.data= t*0.3468 + 0.0745
+		self.odomx= t*0.3468 + 0.0745
 		odometria = t*0.3468 + 0.0745
 		#if self.buttons[1] == 0:
 		#	break
+                msg.data = self.odomx
 		self.distanciaX.publish(msg)
 	self.tiempoactual += t0
 	if self.buttons[2] ==1:
 		self.tiempoactual = 0
-
+        msg.data = self.odomx
+        self.distanciaX.publish(msg)
 
 def main():
     rospy.init_node('test') #creacion y registro del nodo!
     rospy.loginfo("ha empezado joy")
     obj = Template('args') # Crea un objeto del tipo Template, cuya definicion se encuentra arriba
-
+    rate = rospy.Rate(20)
     #objeto.publicar() #llama al metodo publicar del objeto obj de tipo Template
 
     while not rospy.is_shutdown():
 	obj.tiempo() #funcion de ROS que evita que el programa termine -  se debe usar en  Subscribers
-
+        rate.sleep()	
 
 if __name__ =='__main__':
     main()

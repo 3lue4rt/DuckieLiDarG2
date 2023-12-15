@@ -14,8 +14,8 @@ import math
 class OdometryPublisher:
     def __init__(self):
         rospy.init_node('custom_odometry_publisher')
-        self.odom_pub = rospy.Publisher('odom', Odometry, queue_size=10)
-        self.cmd_vel_sub = rospy.Subscriber('/duckiebot/wheels_driver_node/wheels_cmd', WheelsCmdStamped, self.cmd_vel_callback)
+        self.odom_pub = rospy.Publisher('/odom', Odometry, queue_size=10)
+        #self.cmd_vel_sub = rospy.Subscriber('/duckiebot/wheels_driver_node/wheels_cmd', WheelsCmdStamped, self.cmd_vel_callback)
 
         self.odom = Odometry()
         self.odom.header.frame_id = 'odom'
@@ -23,7 +23,7 @@ class OdometryPublisher:
         self.odom.pose.pose.position.x = 0.0
         self.odom.pose.pose.orientation.w=1
 
-	self.sub_distancia = rospy.Subscriber("/duckiebot/distancia_X", Float32, self.callback_x)
+	self.sub_distancia = rospy.Subscriber("/duckiebot/distancia_X", Float32, self.cmd_vel_callback)
         self.last_time = rospy.Time.now()
         self.current_time = rospy.Time.now()
 
@@ -33,10 +33,10 @@ class OdometryPublisher:
 	self.odom.pose.pose.position.x = msg.data
 
     def cmd_vel_callback(self, msg):
-        # Assuming your robot's velocity commands are in m/s
+       # Assuming your robot's velocity commands are in m/s
         # linear_vel = msg.linear.x
         # angular_vel = msg.angular.z
-
+	 self.odom.pose.pose.position.x = msg.data
       	 self.current_time = rospy.Time.now()
       	 dt = (self.current_time - self.last_time).to_sec()
 
@@ -58,13 +58,13 @@ class OdometryPublisher:
        	 self.odom_pub.publish(self.odom)
 	
         # Publish the transform between odom and base_link
-       	 self.tf_broadcaster.sendTransform(
-            (self.odom.pose.pose.position.x, self.odom.pose.pose.position.y, self.odom.pose.pose.position.z),
-            (self.odom.pose.pose.orientation.x, self.odom.pose.pose.orientation.y,self.odom.pose.pose.orientation.z, self.odom.pose.pose.orientation.w),
-            self.current_time,
-            "base_link",
-            "odom"
-        )
+#       	 self.tf_broadcaster.sendTransform(
+#            (self.odom.pose.pose.position.x, self.odom.pose.pose.position.y, self.odom.pose.pose.position.z),
+#            (self.odom.pose.pose.orientation.x, self.odom.pose.pose.orientation.y,self.odom.pose.pose.orientation.z, self.odom.pose.pose.orientation.w),
+#             self.current_time,
+#            "base_link",
+#             "odom"
+#        )
 
 if __name__ == '__main__':
     try:
