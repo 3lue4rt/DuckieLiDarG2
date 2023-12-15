@@ -74,7 +74,11 @@
   <joint name="imu_joint" type="fixed">
     <parent link="chassis"/>
     <child link="imu"/>
+<<<<<<< HEAD
     <origin xyz="${imu_ori_x} -0.006 0.0605" rpy="0 0 0"/>
+=======
+    <origin xyz="${imu_ori_x} -0.006 0.059" rpy="0 0 0"/>
+>>>>>>> dff2cbfa8f1e050f65681102396b1126979ddf8e
   </joint>
   </xacro:macro>
   <xacro:imu/>

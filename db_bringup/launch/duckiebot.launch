@@ -1,0 +1,11 @@
+<!-- duckiebot.launch -->
+
+<launch>
+    <!-- Nodo de robot_localization -->
+    <include file="$(find db_description)/launch/tf.launch"/>
+    <node pkg="robot_localization" type="ekf_localization_node" name="ekf_localization" clear_params="true">
+        <!-- Configuración de parámetros -->
+        <rosparam command="load" file="$(find db_bringup)/params/ekf.yaml" />
+    </node>
+</launch>
+

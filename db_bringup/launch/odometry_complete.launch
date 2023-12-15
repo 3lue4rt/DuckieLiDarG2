@@ -1,0 +1,11 @@
+<!-- odometry_complete.launch -->
+<launch>
+    <!-- Primer dispositivo -->
+    <include file="$(find ros_cap)/launch/duckie_core.launch" /> 
+    <include file="$(find rplidar_ros)/launch/rplidar.launch" /> 
+    <include file="$(find mpu6050_driver)/launch/mpu6050_driver.launch" /> 
+    <include file="$(find imu_filter_madgwick)/launch/imu_filter_madgwick.launch" />  
+    <node pkg="db_odometry" type="odometria.py" name="odometria_node" output="screen"/>
+    <node pkg="db_odometry" type="joy_challenge.py" name="joy_challenge_node" output="screen"/>
+</launch>
+
