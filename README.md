@@ -2,7 +2,7 @@
 Este repositorio fue creado para Duckietown Chile 2023 para el proyecto de mapeo de DuckieTown ocupando LiDar.
 
 ## Requerimientos
-Paquetes que deben instalar/clonar para que funcione este paquete (dependencias)
+Paquetes que deben instalar/clonar en el robot y el computador para que funcione este paquete (dependencias). Los primeros 3 van en el robot y los ultimos 3 en el compu.
 - imu_tools: https://github.com/CCNYRoboticsLab/imu_tools.git
 - mpu6050_driver: https://github.com/Brazilian-Institute-of-Robotics/mpu6050_driver.git
 - rplidar_ros: https://github.com/Slamtec/rplidar_ros.git
