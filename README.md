@@ -21,7 +21,7 @@ roslaunch db_bringup odometry_complete.launch
 ```
 - Cuando se abra un terminal del **_computador_** correr:
 ```
-export ROS_MASTER_URI=”http://duckiebot.local:11311/”
+export ROS_MASTER_URI=http://duckiebot.local:11311/
 ``` 
 - Lanzar en terminal del **_computador_**:
 ```
