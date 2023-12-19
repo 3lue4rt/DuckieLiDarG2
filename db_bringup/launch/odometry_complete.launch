@@ -1,4 +1,6 @@
 <!-- odometry_complete.launch -->
+<!-- Este archivo se encarga de iniciar el core del duckiebot (ros_cap) y de lanzar todos los paquetes necesarios para obtener la odometría lineal (odometria.py) y la orientación entregada por la IMU (mpu6050_driver e imu_filter_madgwick)-->
+<!-- junto con los paquetes que permiten recibir datos del LIDAR (rplidar_ros) y controlar el robot con el joystick (joy_challenge.py) -->
 <launch>
     <!-- Primer dispositivo -->
     <include file="$(find ros_cap)/launch/duckie_core.launch" /> 

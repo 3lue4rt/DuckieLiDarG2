@@ -1,5 +1,7 @@
 <!-- localization.launch -->
-
+<!--Este archivo se encarga de lanzar los nodos necesarios para la localización del duckiebot una vez esté listo el mapa  -->
+<!--Para realizar estp se busca el mapa realizado anteiormente en la carpeta maps y se toman los datos entregados por el LIDAR al momento de localizarse en el tópico scan  -->
+<!--Luego, se corre el nodo de amcl que usa como argumento el mapa y los datos del LIDAR para obtener la posición del robot  -->
 <launch>
     <arg name="map_file"  default="$(find db_bringup)/maps/map.yaml"/>
     <arg name="scan_topic" default="/scan" />

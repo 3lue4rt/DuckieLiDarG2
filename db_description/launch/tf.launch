@@ -1,4 +1,5 @@
 <?xml version="1.0"?>
+<!-- Este launch se encarga de entregar los datos almacenados en la duckiebot.xacro que consisten en el modelo del duckiebot para luego crear los frames y las transformadas al fusionar la odometría.-->
 <launch>
     <arg name="model" default="$(find db_description)/urdf/duckiebot.xacro"/>
     <arg name="js_gui" default="false"/>

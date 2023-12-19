@@ -1,5 +1,7 @@
 <!-- duckiebot.launch -->
-
+<!-- Este archivo se encarga de tomar la odometría entregada por el nodo odometry.py y la imu para crear la odometría fusionada -->
+<!-- Para esto, se encarga de lanzar el archivo tf.launch para compartir los datos de las posiciones de las partes del robot almacenados en la urdf -->
+<!-- y corre el nodo de robot localization para filtrar y fusionar los datos de odometría del robot de acuerdo con los parámetros del archivo ekf.yaml -->
 <launch>
     <!-- Nodo de robot_localization -->
     <include file="$(find db_description)/launch/tf.launch"/>

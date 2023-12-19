@@ -1,5 +1,6 @@
 <?xml version="1.0"?>
-
+ <!-- Este archivo contiene los parámetros para modelar el robot con las posiciones del LIDAR y la IMU incluida -->
+  <!-- Las partes que se modelan son el chasis (como un bloque), las ruedas, la IMU y el LIDAR. -->
 <robot name="differential_robot" xmlns:xacro="http://www.ros.org/wiki/xacro">
 
   <xacro:property name="wheel_diameter"  value="0.034"/>
