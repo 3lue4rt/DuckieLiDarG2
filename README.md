@@ -77,6 +77,11 @@ Foto 1:
 
 <img src="https://github.com/3lue4rt/DuckieLiDarG2/assets/142761701/d7d34ac4-3286-41e4-880a-f19c0fc2b09d" data-canonical-src="https://github.com/3lue4rt/DuckieLiDarG2/assets/142761701/d7d34ac4-3286-41e4-880a-f19c0fc2b09d" width="400" height="400" />
 
+Foto 2:
+
+<img src="https://github.com/3lue4rt/DuckieLiDarG2/assets/142761701/f99b6f09-ca17-47f4-a949-c4ba0c527bcd" data-canonical-src="https://github.com/3lue4rt/DuckieLiDarG2/assets/142761701/f99b6f09-ca17-47f4-a949-c4ba0c527bcd" width="400" height="400" />
+
+
 ### Background del proyecto 
 
 En la ejecución de este proyecto, inicialmente procedimos a instalar la Unidad de Medición Inercial (IMU) junto con el LIDAR en el duckiebot. Posteriormente, nos dedicamos a comprender el funcionamiento del LIDAR y su manejo, creando el archivo lidar_direc.py para experimentar con sus operaciones. Acto seguido, desarrollamos el paquete "db_description," que incluye en la carpeta urdf el modelo del duckiebot. Para ajustar los parámetros necesarios, realizamos mediciones precisas de las distintas partes del robot.
@@ -90,5 +95,3 @@ Luego, fusionamos ambos duckiebots y procedimos a instalar los paquetes gmapping
 Continuamos ajustando el archivo ekf.yaml de robot localization para obtener una odometría precisa, y creamos un lanzamiento que incluyera todos los nodos y parámetros necesarios. Este proceso requirió ajustes iterativos de parámetros para refinar la odometría. Finalmente, aplicamos el paquete gmapping para generar el mapa, aprendiendo a sincronizar los lanzamientos de manera efectiva, y utilizamos el paquete amcl para obtener la localización del duckiebot.
 
 Nota: Para mejorar el mapeo y la localización, empleamos cartones decorados en el mapa para alcanzar la altura del LIDAR.
-
-<!--- Renuncia Monica Soler --->
