@@ -71,4 +71,8 @@ roslaunch db_bringup localization.launch
 - Si se quiere visualizar el mapa con las configuraciones listas, hay que ir a Open config, rviz en db_bringup y buscar la configuración de localization de rviz en src de bringup.
 
 ### Videos y fotos de uso
-Aqui deben ir los links de los videos y fotos -Benja
+[Video 1](https://youtube.com/shorts/5gO4KQgr8Hc?feature=share)
+
+Foto 1:
+
+<img src="https://github.com/3lue4rt/DuckieLiDarG2/assets/142761701/d7d34ac4-3286-41e4-880a-f19c0fc2b09d" data-canonical-src="https://github.com/3lue4rt/DuckieLiDarG2/assets/142761701/d7d34ac4-3286-41e4-880a-f19c0fc2b09d" width="400" height="400" />
