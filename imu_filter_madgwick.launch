@@ -1,0 +1,22 @@
+<launch>
+
+    <!-- Nodos para convertir datos de la IMU a /imu/data -->
+    <node pkg="nodelet" type="nodelet" name="imu_manager" args="manager" output="screen" />
+    <node pkg="nodelet" type="nodelet" name="ImuFilterNodelet"
+    args="load imu_filter_madgwick/ImuFilterNodelet imu_manager"
+    output="screen">
+        <param name="imu_topic" value="/imu/data_raw" />
+        <param name="orientation_topic" value="/imu/data" />
+        <param name="world_frame" value="nwu" />
+        <param name="fixed_frame" value="imu" /> <!-- Establece el fixed frame como "imu" -->
+        <param name="public_tf" value="true" />
+        <param name="use_mag" value="false" />
+    </node>
+
+    <!-- Nodos para estimar la orientación a partir de la MPU6050 IMU -->
+    <!-- <node pkg="mpu6050_driver" type="mpu6050_node" name="mpu6050_imu_node" output="screen">
+        <param name="imu_topic" value="/imu/data_raw" />
+        <param name="orientation_topic" value="/imu/mpu6050_orientation" />
+        <param name="imu_calibration_file" value="(find mpu6050_driver)/config/mpu_settings.yaml" />
+    </node> -->
+</launch>
